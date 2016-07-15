@@ -20,9 +20,15 @@ As an authorization HTTP request-header field and as an URI query parameter name
 
 ## API rate limits
 
-On the Content Delivery API there are no limits enforced on requests that hit the cache (i.e. a cache hit does not count towards rate limit and an unlimited amount of cache hits can be done). Nonetheless, there is still a rate limit of approximately 80 requests per seconds on the origin.
+On the Content Delivery API there are no limits enforced on requests that hit the cache (i.e. a cache hit does not count towards rate limit and an unlimited amount of cache hits can be done). Nonetheless, there is still a rate limit of approximately 21600 requests per hour and 80 requests per seconds on the origin.
 
 The limit exists to prevent unlimited usage and ensure the consumption of resources that a single account can exercise is limited. The rate limit is implemented through a standard mechanism of the HTTP protocol (returning response code 429). Keep in mind that there are internal layers of caching close to the origin that again do not contribute to the rate limit.
+
+Contentful uses the `x-contentful-ratelimit-reset` header to inform a user when they can make their next request. This header is only sent back for rate limited requests (429) due to the fact that requests with the status code in the 4xx range are not cached. Sending the header back for any request would quickly render it inaccurate because of the caching mechanisms behind the Content Delivery API.
+
+Header   				| Status Code 						| Description
+----------------------------------------|-------------------------------------------------------|----------------------------------------------------
+`x-contentful-ratelimit-reset` 		| `429`. Returned only for rate limited requests. 	| The number of seconds until the next request can be made.
 
 ## Common resource attributes
 
