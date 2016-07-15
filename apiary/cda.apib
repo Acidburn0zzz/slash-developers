@@ -26,9 +26,9 @@ The limit exists to prevent unlimited usage and ensure the consumption of resour
 
 Contentful uses the `x-contentful-ratelimit-reset` header to inform a user when they can make their next request. This header is only sent back for rate limited requests (429) due to the fact that requests with the status code in the 4xx range are not cached. Sending the header back for any request would quickly render it inaccurate because of the caching mechanisms behind the Content Delivery API.
 
-Header   				| Status Code 						| Description
-----------------------------------------|-------------------------------------------------------|----------------------------------------------------
-`x-contentful-ratelimit-reset` 		| `429`. Returned only for rate limited requests. 	| The number of seconds until the next request can be made.
+Header                            | Status Code                                       | Description
+----------------------------------|---------------------------------------------------|----------------------------------------------------
+`x-contentful-ratelimit-reset`    | `429`. Returned only for rate limited requests.   | The number of seconds until the next request can be made.
 
 ## Common resource attributes
 
