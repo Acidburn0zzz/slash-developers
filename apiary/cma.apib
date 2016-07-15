@@ -75,6 +75,8 @@ Header                                    | Status Code                         
 
 It's important to note that the `x-contentful-ratelimit-reset` header does _not_ return the time until the next full reset. Instead it tells you when the next request can be made. If a per second rate limit is enforced it will return 1 (time until the next second). If an hourly rate limit is enforced it will return the time until the next sliding window.
 
+-:[Common Resource Attribute](_partials/cma/resource-attributes.apib)
+
 ## Errors
 
 :[Common errors](_partials/errors-common.md)
